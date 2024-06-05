@@ -12,15 +12,9 @@ const Bookshelf = () => {
         author: ``
     })
 
-    function handleTitleInputChange(event) {
+    function handleInputChange(event) {
         const copyNewBook = structuredClone(newBook)
-        copyNewBook.title = event.target.value
-        setNewBook(copyNewBook)
-    }
-
-    function handleAuthorInputChange(event) {
-        const copyNewBook = structuredClone(newBook)
-        copyNewBook.author = event.target.value
+        copyNewBook[event.target.name] = event.target.value
         setNewBook(copyNewBook)
     }
 
@@ -35,6 +29,8 @@ const Bookshelf = () => {
         })
     }
 
+    console.log(newBook)
+
     return <div className="bookshelfDiv">
         <div className="formDiv">
             <h3>Add a Book</h3>
@@ -42,13 +38,15 @@ const Bookshelf = () => {
                 <input
                 placeholder='Book title'
                 type='text'
-                onChange={handleTitleInputChange}
+                name='title'
+                onChange={handleInputChange}
                 value={newBook.title}
                 />
                 <input
                 placeholder='Author'
                 type='text'
-                onChange={handleAuthorInputChange}
+                name='author'
+                onChange={handleInputChange}
                 value={newBook.author}
                 />
                 <button>Add book</button>
